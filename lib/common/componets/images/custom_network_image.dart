@@ -21,6 +21,7 @@ class CustomNetworkImage extends StatelessWidget {
         aspectRatio: 1,
         child: CachedNetworkImage(
           imageUrl: url,
+          fit: BoxFit.cover,
           placeholder: (context, url) =>
               const Center(child: CustomCircularProgress()),
           errorWidget: (context, url, error) => const Icon(

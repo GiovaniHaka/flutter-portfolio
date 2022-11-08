@@ -54,7 +54,11 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
                     return CharacterCard(
                       character: character,
                       onTap: () {
-                        Navigator.pushNamed(context, Routes.characterDetails);
+                        Navigator.pushNamed(
+                          context,
+                          Routes.characterDetails,
+                          arguments: character,
+                        );
                       },
                     );
                   },

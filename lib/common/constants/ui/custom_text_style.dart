@@ -29,7 +29,7 @@ class CustomTextStyle {
 
   static TextStyle titleLarge(BuildContext context) {
     const style = TextStyle(
-      fontSize: 20,
+      fontSize: 23,
       fontWeight: FontWeight.w600,
       color: color,
     );
@@ -49,7 +49,7 @@ class CustomTextStyle {
 
   static TextStyle bodySmall(BuildContext context) {
     const style = TextStyle(
-      fontSize: 12,
+      fontSize: 14,
       fontWeight: FontWeight.w400,
       color: Colors.grey,
     );
@@ -59,17 +59,17 @@ class CustomTextStyle {
 
   static TextStyle bodyMedium(BuildContext context) {
     const style = TextStyle(
-      fontSize: 14,
+      fontSize: 16,
       fontWeight: FontWeight.w400,
       color: color,
     );
 
     return _baseTextStyle(style);
   }
- 
+
   static TextStyle bodyLarge(BuildContext context) {
     const style = TextStyle(
-      fontSize: 16,
+      fontSize: 18,
       fontWeight: FontWeight.w400,
       color: color,
     );
@@ -90,7 +90,7 @@ class CustomTextStyle {
 
   static TextStyle labelMedium(BuildContext context) {
     const style = TextStyle(
-      fontSize: 12,
+      fontSize: 14,
       fontWeight: FontWeight.w400,
       color: color,
     );
@@ -100,7 +100,7 @@ class CustomTextStyle {
 
   static TextStyle labelLarge(BuildContext context) {
     const style = TextStyle(
-      fontSize: 14,
+      fontSize: 16,
       fontWeight: FontWeight.w500,
       color: color,
     );
