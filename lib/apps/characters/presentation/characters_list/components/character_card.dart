@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:ricky_and_morty/apps/characters/domain/models/character.dart';
-import 'package:ricky_and_morty/common/componets/cards/icon_card.dart';
 import 'package:ricky_and_morty/common/componets/cards/decorated_card.dart';
+import 'package:ricky_and_morty/common/componets/cards/icon_card.dart';
 import 'package:ricky_and_morty/common/componets/images/custom_network_image.dart';
 import 'package:ricky_and_morty/common/componets/separators/horizontal_separator.dart';
 import 'package:ricky_and_morty/common/componets/separators/vertical_separator.dart';
@@ -12,15 +12,18 @@ import 'package:ricky_and_morty/common/constants/ui/custom_text_style.dart';
 
 class CharacterCard extends StatelessWidget {
   final Character character;
+  final Function() onTap;
 
   const CharacterCard({
     Key? key,
     required this.character,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return DecoratedCard(
+      onTap: onTap,
       color: CustomColors.greyLight,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

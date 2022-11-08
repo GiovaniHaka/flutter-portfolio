@@ -6,6 +6,7 @@ import 'package:ricky_and_morty/common/componets/progress_indicators/custom_circ
 import 'package:ricky_and_morty/common/componets/separators/vertical_separator.dart';
 import 'package:ricky_and_morty/common/constants/ui/padding_constants.dart';
 import 'package:ricky_and_morty/common/states/states.dart';
+import 'package:ricky_and_morty/navigator/routes.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
 class CharactersListScreen extends StatefulWidget {
@@ -50,7 +51,12 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
                   itemBuilder: (_, index) {
                     final character = characters[index];
 
-                    return CharacterCard(character: character);
+                    return CharacterCard(
+                      character: character,
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.characterDetails);
+                      },
+                    );
                   },
                   separatorBuilder: (_, index) {
                     return const VerticalSeparator();

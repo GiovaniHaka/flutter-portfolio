@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ricky_and_morty/common/componets/buttons/button_detector.dart';
-import 'package:ricky_and_morty/common/constants/ui/padding_constants.dart';
 
 class IconCard extends StatelessWidget {
   final IconData icon;

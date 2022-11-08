@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ricky_and_morty/apps/characters/presentation/characters_list/characters_list_screen.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_colors.dart';
+import 'package:ricky_and_morty/navigator/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const CharactersListScreen(),
+      initialRoute: Routes.root,
+      onGenerateRoute: (settings) => Routes.onGenerateRoute(settings),
     );
   }
 }
