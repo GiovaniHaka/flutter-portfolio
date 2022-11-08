@@ -39,6 +39,7 @@ dependencies:
   dio: ^4.0.6
   dartz: ^0.10.1
   rx_notifier: ^1.1.0
+  cached_network_image: ^3.2.2
 
 dev_dependencies:
   flutter_test:
