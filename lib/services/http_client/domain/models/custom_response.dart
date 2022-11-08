@@ -5,11 +5,11 @@ enum ResponseStatus {
 }
 
 class CustomResponse {
-  ResponseStatus statusCode;
+  ResponseStatus status;
   Map<String, dynamic>? data;
 
   CustomResponse({
-    required this.statusCode,
+    required this.status,
     this.data,
   });
 }
