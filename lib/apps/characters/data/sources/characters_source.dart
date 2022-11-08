@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-import 'package:ricky_and_morty/apps/characters/domain/models/character_filters.dart';
 import 'package:ricky_and_morty/apps/characters/domain/models/request/all_chars_request.dart';
 import 'package:ricky_and_morty/apps/characters/domain/models/request/multiple_chars_request.dart';
 import 'package:ricky_and_morty/common/constants/endpoints/ricky_morty_endpoints.dart';
@@ -11,9 +10,9 @@ import 'package:ricky_and_morty/services/http_client/domain/models/custom_respon
 import 'package:ricky_and_morty/services/http_client/domain/usecases/http_client.dart';
 
 abstract class CharactersSource {
-  Future<Either<Failure, Map<String, dynamic>?>> getAll(AllCharsRequest req);
+  Future<Either<Failure, Map<String, dynamic>>> getAll(AllCharsRequest req);
 
-  Future<Either<Failure, Map<String, dynamic>?>> getMultiple(
+  Future<Either<Failure, Map<String, dynamic>>> getMultiple(
       MultiCharsRequest req);
 }
 
@@ -25,7 +24,7 @@ class CharactersSourceImp implements CharactersSource {
   }
 
   @override
-  Future<Either<Failure, Map<String, dynamic>?>> getAll(
+  Future<Either<Failure, Map<String, dynamic>>> getAll(
       AllCharsRequest req) async {
     try {
       String path = RickMortyApi.characters;
@@ -49,9 +48,9 @@ class CharactersSourceImp implements CharactersSource {
 
       switch (status) {
         case ResponseStatus.success:
-          return Right(data);
+          return Right(data!);
         case ResponseStatus.unknown:
-          return const Right(null);
+          return Left(Failure('Não conseguimos encontrar os personagens'));
         case ResponseStatus.error:
           return Left(Failure('Erro ao encontrar personagens'));
         default:
@@ -64,7 +63,7 @@ class CharactersSourceImp implements CharactersSource {
   }
 
   @override
-  Future<Either<Failure, Map<String, dynamic>?>> getMultiple(
+  Future<Either<Failure, Map<String, dynamic>>> getMultiple(
       MultiCharsRequest req) async {
     try {
       String path = RickMortyApi.characters;
@@ -88,9 +87,9 @@ class CharactersSourceImp implements CharactersSource {
 
       switch (status) {
         case ResponseStatus.success:
-          return Right(data);
+          return Right(data!);
         case ResponseStatus.unknown:
-          return const Right(null);
+          return Left(Failure('Não conseguimos encontrar os personagens'));
         case ResponseStatus.error:
           return Left(Failure('Erro ao encontrar os personagens'));
         default:
