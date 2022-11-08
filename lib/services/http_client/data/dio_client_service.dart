@@ -14,13 +14,25 @@ class DioClientServiceImp implements ClientService {
       final queryParams = request.queryParameters;
 
       final response = await _dio.get(path, queryParameters: queryParams);
+      final statusCode = response.statusCode;
 
-      return CustomResponse(
-        data: response.data,
-        statusCode: response.statusCode,
-      );
+      switch (statusCode) {
+        case 200:
+          return CustomResponse(
+            statusCode: ResponseStatus.success,
+            data: response.data,
+          );
+        default:
+          return CustomResponse(
+            statusCode: ResponseStatus.unknown,
+            data: null,
+          );
+      }
     } catch (e) {
-      throw HttpClientException();
+      return CustomResponse(
+        statusCode: ResponseStatus.error,
+        data: null,
+      );
     }
   }
 }
