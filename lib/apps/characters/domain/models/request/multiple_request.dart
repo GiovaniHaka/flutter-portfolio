@@ -1,8 +1,8 @@
-class MultiCharsRequest {
+class MultipleRequest {
   List<int>? ids;
   String? url;
   
-  MultiCharsRequest({
+  MultipleRequest({
     this.ids,
     this.url,
   });

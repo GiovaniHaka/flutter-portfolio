@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:ricky_and_morty/apps/characters/data/repositories/characters_repository.dart';
 import 'package:ricky_and_morty/apps/characters/domain/models/get_characters_response.dart';
-import 'package:ricky_and_morty/apps/characters/domain/models/request/all_chars_request.dart';
+import 'package:ricky_and_morty/apps/characters/domain/models/request/all_request.dart';
 import 'package:ricky_and_morty/common/exceptions/failure.dart';
 
 abstract class GetAllCharacters {
-  Future<Either<Failure, GetCharactersResponse>> call(AllCharsRequest request);
+  Future<Either<Failure, GetCharactersResponse>> call(AllRequest request);
 }
 
 class GetAllCharactersImp implements GetAllCharacters {
@@ -17,7 +17,7 @@ class GetAllCharactersImp implements GetAllCharacters {
 
   @override
   Future<Either<Failure, GetCharactersResponse>> call(
-      AllCharsRequest req) async {
+      AllRequest req) async {
     try {
       return await _repository.getAll(req);
     } catch (e) {

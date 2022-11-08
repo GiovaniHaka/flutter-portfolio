@@ -4,16 +4,16 @@ import 'package:dartz/dartz.dart';
 import 'package:ricky_and_morty/apps/characters/data/sources/characters_source.dart';
 import 'package:ricky_and_morty/apps/characters/domain/models/character.dart';
 import 'package:ricky_and_morty/apps/characters/domain/models/get_characters_response.dart';
-import 'package:ricky_and_morty/apps/characters/domain/models/request/all_chars_request.dart';
-import 'package:ricky_and_morty/apps/characters/domain/models/request/multiple_chars_request.dart';
+import 'package:ricky_and_morty/apps/characters/domain/models/request/all_request.dart';
+import 'package:ricky_and_morty/apps/characters/domain/models/request/multiple_request.dart';
 import 'package:ricky_and_morty/common/exceptions/failure.dart';
-import 'package:ricky_and_morty/common/models/rick_and_morty_api/response_info.dart';
+import 'package:ricky_and_morty/common/models/rick_and_morty_api/info.dart';
 
 abstract class CharactersRepository {
-  Future<Either<Failure, GetCharactersResponse>> getAll(AllCharsRequest req);
+  Future<Either<Failure, GetCharactersResponse>> getAll(AllRequest req);
 
   Future<Either<Failure, GetCharactersResponse>> getMultiple(
-      MultiCharsRequest req);
+      MultipleRequest req);
 }
 
 class CharactersRepositoryImp implements CharactersRepository {
@@ -25,14 +25,14 @@ class CharactersRepositoryImp implements CharactersRepository {
 
   @override
   Future<Either<Failure, GetCharactersResponse>> getAll(
-      AllCharsRequest req) async {
+      AllRequest req) async {
     try {
       final result = await _source.getAll(req);
 
       return result.fold(
         (failure) => Left(failure),
         (data) {
-          final info = ResponseInfo.fromMap(data['info']);
+          final info = Info.fromMap(data['info']);
           final results = data['results'] as List;
           final characters = results.map((e) => Character.fromMap(e)).toList();
 
@@ -50,14 +50,14 @@ class CharactersRepositoryImp implements CharactersRepository {
 
   @override
   Future<Either<Failure, GetCharactersResponse>> getMultiple(
-      MultiCharsRequest req) async {
+      MultipleRequest req) async {
     try {
       final result = await _source.getMultiple(req);
 
       return result.fold(
         (failure) => Left(failure),
         (data) {
-          final info = ResponseInfo.fromMap(data['info']);
+          final info = Info.fromMap(data['info']);
           final results = data['results'] as List;
           final characters = results.map((e) => Character.fromMap(e)).toList();
 

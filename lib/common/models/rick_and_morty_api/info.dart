@@ -1,18 +1,18 @@
-class ResponseInfo {
+class Info {
   final int count;
   final int pages;
   final String? next;
   final String? prev;
 
-  ResponseInfo({
+  Info({
     required this.count,
     required this.pages,
     this.next = '',
     this.prev = '',
   });
 
-  factory ResponseInfo.fromMap(Map<String, dynamic> map) {
-    return ResponseInfo(
+  factory Info.fromMap(Map<String, dynamic> map) {
+    return Info(
       count: map['count'],
       pages: map['pages'],
       next: map['next'],

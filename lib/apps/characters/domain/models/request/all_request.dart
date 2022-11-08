@@ -1,10 +1,10 @@
 import 'package:ricky_and_morty/apps/characters/domain/models/character_filters.dart';
 
-class AllCharsRequest {
+class AllRequest {
   CharacterFilters? filters;
   String? url;
   
-  AllCharsRequest({
+  AllRequest({
     this.filters,
     this.url,
   });
