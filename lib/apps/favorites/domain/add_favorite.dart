@@ -11,10 +11,12 @@ abstract class AddFavorite {
 class AddFavoriteImp implements AddFavorite {
   late FavoriteRepository _repository;
 
-  AddFavoriteImp([FavoriteRepository? favoriteRepository]);
+  AddFavoriteImp([FavoriteRepository? favoriteRepository]) {
+    _repository = favoriteRepository ?? FavoriteRepositoryImp();
+  }
 
   @override
-  Future<Either<Failure, void>> call(int key) async{
+  Future<Either<Failure, void>> call(int key) async {
     try {
       return await _repository.add(key);
     } catch (e) {

@@ -11,7 +11,9 @@ abstract class GetAllFavorites {
 class GetAllFavoritesImp implements GetAllFavorites {
   late FavoriteRepository _repository;
 
-  GetAllFavoritesImp([FavoriteRepository? favoriteRepository]);
+  GetAllFavoritesImp([FavoriteRepository? favoriteRepository]){
+    _repository = favoriteRepository ?? FavoriteRepositoryImp();
+  }
 
   @override
   Future<Either<Failure, List<int>>> call() async {

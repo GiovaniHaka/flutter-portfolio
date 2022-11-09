@@ -11,10 +11,12 @@ abstract class RemoveFavorite {
 class RemoveFavoriteImp implements RemoveFavorite {
   late FavoriteRepository _repository;
 
-  RemoveFavoriteImp([FavoriteRepository? favoriteRepository]);
+  RemoveFavoriteImp([FavoriteRepository? favoriteRepository]) {
+    _repository = favoriteRepository ?? FavoriteRepositoryImp();
+  }
 
   @override
-  Future<Either<Failure, void>> call(int key) async{
+  Future<Either<Failure, void>> call(int key) async {
     try {
       return await _repository.remove(key);
     } catch (e) {
