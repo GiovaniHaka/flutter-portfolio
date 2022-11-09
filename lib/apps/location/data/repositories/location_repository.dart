@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:ricky_and_morty/apps/location/data/sources/location_source.dart';
 import 'package:ricky_and_morty/apps/location/domain/models/location.dart';
@@ -22,11 +24,12 @@ class LocationRepositoryImp implements LocationRepository {
       return result.fold(
         (failure) => Left(failure),
         (data) {
-          final location = Location.fromMap(data['results'].first);
+          final location = Location.fromMap(data);
           return Right(location);
         },
       );
     } catch (e) {
+      log(e.toString());
       throw Exception(e);
     }
   }
