@@ -22,7 +22,7 @@ class EpisodeRepositoryImp implements EpisodeRepository {
       return result.fold(
         (failure) => Left(failure),
         (data) {
-          final episode = Episode.fromMap(data['results'].first);
+          final episode = Episode.fromMap(data);
           return Right(episode);
         },
       );
