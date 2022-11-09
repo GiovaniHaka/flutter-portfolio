@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:ricky_and_morty/apps/characters/domain/models/request/all_request.dart';
 import 'package:ricky_and_morty/apps/characters/domain/models/request/multiple_request.dart';
@@ -24,8 +22,7 @@ class CharactersSourceImp implements CharactersSource {
   }
 
   @override
-  Future<Either<Failure, Map<String, dynamic>>> getAll(
-      AllRequest req) async {
+  Future<Either<Failure, Map<String, dynamic>>> getAll(AllRequest req) async {
     try {
       String path = RickMortyApi.characters;
 
@@ -57,8 +54,7 @@ class CharactersSourceImp implements CharactersSource {
           throw Exception();
       }
     } catch (e) {
-      log(e.toString());
-      return Left(Failure('Erro ao buscar personagens'));
+      throw Exception();
     }
   }
 
@@ -93,10 +89,10 @@ class CharactersSourceImp implements CharactersSource {
         case ResponseStatus.error:
           return Left(Failure('Erro ao encontrar os personagens'));
         default:
-          throw Exception();
+          throw UnimplementedError();
       }
     } catch (e) {
-      return Left(Failure('Erro ao buscar personagens'));
+      throw Exception();
     }
   }
 }

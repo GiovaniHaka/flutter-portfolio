@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:ricky_and_morty/common/exceptions/failure.dart';
 import 'package:ricky_and_morty/services/http_client/domain/models/custom_request.dart';
@@ -34,11 +32,10 @@ class EpisodeSourceImp implements EpisodeSource {
         case ResponseStatus.error:
           return Left(Failure('Erro ao encontrar episódio'));
         default:
-          throw Exception();
+          throw UnimplementedError();
       }
     } catch (e) {
-      log(e.toString());
-      return Left(Failure('Erro ao buscar episódio'));
+      throw Exception();
     }
   }
 }

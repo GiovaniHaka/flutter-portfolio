@@ -31,10 +31,10 @@ class LocationSourceImp implements LocationSource {
         case ResponseStatus.error:
           return Left(Failure('Erro ao encontrar localização'));
         default:
-          throw Exception();
+          throw UnimplementedError();
       }
     } catch (e) {
-      return Left(Failure('Erro ao buscar localização'));
+      throw Exception();
     }
   }
 }
