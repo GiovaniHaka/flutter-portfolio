@@ -5,4 +5,5 @@ class CustomIconData {
   static const specie = Icons.bloodtype_outlined;
   static const error = Icons.error_outline_outlined;
   static const aliveStatus = Icons.monitor_heart_outlined;
+  static const location = Icons.location_on_outlined;
 }

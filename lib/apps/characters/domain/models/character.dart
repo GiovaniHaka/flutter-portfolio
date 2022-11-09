@@ -35,8 +35,8 @@ class Character {
       species: map['species'],
       type: map['type'],
       gender: CharacterGender.fromString(map['gender']),
-      origin: CharacterOrigin.fromJson(map['origin']),
-      location: CharacterLocation.fromJson(map['location']),
+      origin: CharacterOrigin.fromMap(map['origin']),
+      location: CharacterLocation.fromMap(map['location']),
       image: map['image'],
       episode: List<String>.from(map['episode'].map((x) => x)),
       url: map['url'],
@@ -59,16 +59,12 @@ class CharacterLocation {
   String name;
   String url;
 
-  factory CharacterLocation.fromJson(Map<String, dynamic> json) =>
-      CharacterLocation(
-        name: json['name'],
-        url: json['url'],
-      );
-
-  Map<String, dynamic> toJson() => {
-        'name': name,
-        'url': url,
-      };
+  factory CharacterLocation.fromMap(Map<String, dynamic> map) {
+    return CharacterLocation(
+      name: map['name'],
+      url: map['url'],
+    );
+  }
 }
 
 class CharacterOrigin {
@@ -80,16 +76,12 @@ class CharacterOrigin {
   String name;
   String url;
 
-  factory CharacterOrigin.fromJson(Map<String, dynamic> json) =>
-      CharacterOrigin(
-        name: json['name'],
-        url: json['url'],
-      );
-
-  Map<String, dynamic> toJson() => {
-        'name': name,
-        'url': url,
-      };
+  factory CharacterOrigin.fromMap(Map<String, dynamic> map) {
+    return CharacterOrigin(
+      name: map['name'],
+      url: map['url'],
+    );
+  }
 }
 
 enum CharacterStatus {

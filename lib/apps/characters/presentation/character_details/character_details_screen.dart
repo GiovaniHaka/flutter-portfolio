@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:ricky_and_morty/apps/characters/domain/models/character.dart';
 import 'package:ricky_and_morty/apps/characters/presentation/character_details/components/character_details_card.dart';
+import 'package:ricky_and_morty/apps/location/presentation/location_details/location_details_card.dart';
 import 'package:ricky_and_morty/common/componets/images/custom_network_image.dart';
 import 'package:ricky_and_morty/common/componets/separators/vertical_separator.dart';
 import 'package:ricky_and_morty/common/constants/ui/padding_constants.dart';
@@ -26,6 +27,8 @@ class CharacterDetailsScreen extends StatelessWidget {
             CustomNetworkImage(url: character.image),
             const VerticalSeparator.large(),
             CharacterDetailsCard(character: character),
+            const VerticalSeparator.large(),
+            LocationDetailsCard(url: character.location.url),
           ],
         ),
       ),

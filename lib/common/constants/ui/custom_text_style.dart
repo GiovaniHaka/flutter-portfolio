@@ -9,7 +9,7 @@ class CustomTextStyle {
 
   static TextStyle titleSmall(BuildContext context) {
     const style = TextStyle(
-      fontSize: 14,
+      fontSize: 15,
       fontWeight: FontWeight.w500,
       color: color,
     );
@@ -19,7 +19,7 @@ class CustomTextStyle {
 
   static TextStyle titleMedium(BuildContext context) {
     const style = TextStyle(
-      fontSize: 16,
+      fontSize: 19,
       fontWeight: FontWeight.w500,
       color: color,
     );
@@ -79,9 +79,8 @@ class CustomTextStyle {
 
   static TextStyle labelSmall(BuildContext context) {
     const style = TextStyle(
-      fontSize: 10,
+      fontSize: 14,
       fontWeight: FontWeight.w300,
-      letterSpacing: 1,
       color: color,
     );
 
