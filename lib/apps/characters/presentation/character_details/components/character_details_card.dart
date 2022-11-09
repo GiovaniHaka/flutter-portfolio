@@ -7,6 +7,7 @@ import 'package:ricky_and_morty/common/constants/ui/custom_colors.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_icon_data.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_text_style.dart';
 import 'package:ricky_and_morty/common/constants/ui/separator_constants.dart';
+import 'package:ricky_and_morty/utils/datetime/datetime_format.dart';
 
 class CharacterDetailsCard extends StatelessWidget {
   final Character character;
@@ -42,6 +43,12 @@ class CharacterDetailsCard extends StatelessWidget {
               backgroundColor: CustomColors.purpleLight,
               foregroundColor: CustomColors.purpleStrong,
               text: character.status.translation,
+            ),
+            DetailClip(
+              icon: CustomIconData.created,
+              backgroundColor: CustomColors.amberLight,
+              foregroundColor: CustomColors.amberStrong,
+              text: DateTimeFormat(character.created).toYMD(),
             ),
           ],
         ),

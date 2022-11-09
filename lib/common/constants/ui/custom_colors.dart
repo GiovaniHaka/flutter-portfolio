@@ -13,4 +13,6 @@ extension CustomColors on ColorScheme {
   static const Color purpleLight = Color(0xffEEF0FF);
   static const Color redLight = Color(0xffFFDDDB);
   static const Color redStrong = Color(0xffFF6B62);
+  static const Color amberStrong = Color(0xffF1AE00);
+  static const Color amberLight = Color(0xffFFF4D9);
 }

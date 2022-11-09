@@ -7,4 +7,5 @@ class CustomIconData {
   static const aliveStatus = Icons.monitor_heart_outlined;
   static const location = Icons.my_location_outlined;
   static const origin = Icons.home_outlined;
+  static const created = Icons.create_outlined;
 }
