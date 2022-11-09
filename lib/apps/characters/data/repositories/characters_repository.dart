@@ -3,17 +3,16 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:ricky_and_morty/apps/characters/data/sources/characters_source.dart';
 import 'package:ricky_and_morty/apps/characters/domain/models/character.dart';
-import 'package:ricky_and_morty/apps/characters/domain/models/get_characters_response.dart';
+import 'package:ricky_and_morty/apps/characters/domain/models/get_all_characters_response.dart';
 import 'package:ricky_and_morty/apps/characters/domain/models/request/all_request.dart';
 import 'package:ricky_and_morty/apps/characters/domain/models/request/multiple_request.dart';
 import 'package:ricky_and_morty/common/exceptions/failure.dart';
 import 'package:ricky_and_morty/common/models/rick_and_morty_api/info.dart';
 
 abstract class CharactersRepository {
-  Future<Either<Failure, GetCharactersResponse>> getAll(AllRequest req);
+  Future<Either<Failure, GetAllCharactersResponse>> getAll(AllRequest req);
 
-  Future<Either<Failure, GetCharactersResponse>> getMultiple(
-      MultipleRequest req);
+  Future<Either<Failure, List<Character>>> getMultiple(MultipleRequest req);
 }
 
 class CharactersRepositoryImp implements CharactersRepository {
@@ -24,7 +23,7 @@ class CharactersRepositoryImp implements CharactersRepository {
   }
 
   @override
-  Future<Either<Failure, GetCharactersResponse>> getAll(
+  Future<Either<Failure, GetAllCharactersResponse>> getAll(
       AllRequest req) async {
     try {
       final result = await _source.getAll(req);
@@ -36,7 +35,7 @@ class CharactersRepositoryImp implements CharactersRepository {
           final results = data['results'] as List;
           final characters = results.map((e) => Character.fromMap(e)).toList();
 
-          return Right(GetCharactersResponse(
+          return Right(GetAllCharactersResponse(
             info: info,
             characters: characters,
           ));
@@ -49,7 +48,7 @@ class CharactersRepositoryImp implements CharactersRepository {
   }
 
   @override
-  Future<Either<Failure, GetCharactersResponse>> getMultiple(
+  Future<Either<Failure, List<Character>>> getMultiple(
       MultipleRequest req) async {
     try {
       final result = await _source.getMultiple(req);
@@ -57,14 +56,9 @@ class CharactersRepositoryImp implements CharactersRepository {
       return result.fold(
         (failure) => Left(failure),
         (data) {
-          final info = Info.fromMap(data['info']);
-          final results = data['results'] as List;
+          final results = data;
           final characters = results.map((e) => Character.fromMap(e)).toList();
-
-          return Right(GetCharactersResponse(
-            info: info,
-            characters: characters,
-          ));
+          return Right(characters);
         },
       );
     } catch (e) {

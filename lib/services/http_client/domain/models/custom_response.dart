@@ -6,7 +6,7 @@ enum ResponseStatus {
 
 class CustomResponse {
   ResponseStatus status;
-  Map<String, dynamic>? data;
+  dynamic data;
 
   CustomResponse({
     required this.status,

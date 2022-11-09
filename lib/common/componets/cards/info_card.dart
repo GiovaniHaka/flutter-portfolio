@@ -4,7 +4,6 @@ import 'package:ricky_and_morty/common/componets/separators/horizontal_separator
 import 'package:ricky_and_morty/common/constants/ui/custom_colors.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_icon_data.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_text_style.dart';
-import 'package:ricky_and_morty/common/constants/ui/margin_constants.dart';
 
 class InfoCard extends StatelessWidget {
   final Color strongColor;
