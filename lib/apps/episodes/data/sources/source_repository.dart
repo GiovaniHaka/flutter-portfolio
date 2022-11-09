@@ -12,10 +12,10 @@ abstract class EpisodeSource {
 }
 
 
-class EpisodeSourceImo implements EpisodeSource {
+class EpisodeSourceImp implements EpisodeSource {
   late HttpClient _httpClient;
 
-  EpisodeSourceImo([HttpClient? httpClient]) {
+  EpisodeSourceImp([HttpClient? httpClient]) {
     _httpClient = httpClient ?? HttpClietImp();
   }
 

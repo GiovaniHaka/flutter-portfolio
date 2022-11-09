@@ -28,4 +28,9 @@ class Episode {
       created: DateTime.parse(map['created']),
     );
   }
+
+  @override
+  String toString() {
+    return 'Episode(id: $id, name: $name, airDate: $airDate, episode: $episode, characters: $characters, url: $url, created: $created)';
+  }
 }

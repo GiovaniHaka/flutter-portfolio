@@ -10,7 +10,9 @@ abstract class GetSingleEpisode {
 class GetSingleEpisodeImp implements GetSingleEpisode {
   late EpisodeRepository _repository;
 
-  GetSingleEpisodeImp([EpisodeRepository? repository]);
+  GetSingleEpisodeImp([EpisodeRepository? repository]) {
+    _repository = repository ?? EpisodeRepositoryImp();
+  }
 
   @override
   Future<Either<Failure, Episode>> call(String url) async {

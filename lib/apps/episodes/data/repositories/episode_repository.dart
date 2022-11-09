@@ -10,7 +10,9 @@ abstract class EpisodeRepository {
 class EpisodeRepositoryImp implements EpisodeRepository {
   late EpisodeSource _source;
 
-  EpisodeRepositoryImp([EpisodeSource? source]);
+  EpisodeRepositoryImp([EpisodeSource? source]) {
+    _source = source ?? EpisodeSourceImp();
+  }
 
   @override
   Future<Either<Failure, Episode>> getSingle(String url) async {
