@@ -8,4 +8,6 @@ class CustomIconData {
   static const location = Icons.my_location_outlined;
   static const origin = Icons.home_outlined;
   static const created = Icons.create_outlined;
+  static const favoriteOn = Icons.favorite;
+  static const favoriteOff = Icons.favorite_border;
 }

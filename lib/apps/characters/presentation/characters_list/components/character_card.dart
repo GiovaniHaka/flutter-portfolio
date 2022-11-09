@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:ricky_and_morty/apps/characters/domain/models/character.dart';
+import 'package:ricky_and_morty/apps/favorites/presentation/favorite_button/favorite_button.dart';
 import 'package:ricky_and_morty/common/componets/cards/decorated_card.dart';
 import 'package:ricky_and_morty/common/componets/cards/icon_card.dart';
 import 'package:ricky_and_morty/common/componets/images/custom_network_image.dart';
@@ -61,6 +62,8 @@ class CharacterCard extends StatelessWidget {
               ],
             ),
           ),
+          const HorizontalSeparator(),
+          FavoriteButton(id: character.id),
         ],
       ),
     );
