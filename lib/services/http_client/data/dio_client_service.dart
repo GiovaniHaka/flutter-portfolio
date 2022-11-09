@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:ricky_and_morty/services/http_client/data/client_service.dart';
 import 'package:ricky_and_morty/services/http_client/domain/models/custom_request.dart';
@@ -28,6 +30,7 @@ class DioClientServiceImp implements ClientService {
           );
       }
     } catch (e) {
+      log(e.toString());
       return CustomResponse(
         status: ResponseStatus.error,
         data: null,

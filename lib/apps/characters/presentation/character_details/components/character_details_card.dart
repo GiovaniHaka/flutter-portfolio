@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:ricky_and_morty/apps/characters/domain/models/character.dart';
-import 'package:ricky_and_morty/common/componets/cards/decorated_card.dart';
 import 'package:ricky_and_morty/common/componets/separators/horizontal_separator.dart';
 import 'package:ricky_and_morty/common/componets/separators/vertical_separator.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_colors.dart';

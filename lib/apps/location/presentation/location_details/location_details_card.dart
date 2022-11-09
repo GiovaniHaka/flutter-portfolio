@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:ricky_and_morty/common/componets/cards/icon_card.dart';
-import 'package:ricky_and_morty/common/componets/separators/horizontal_separator.dart';
-import 'package:ricky_and_morty/common/constants/ui/custom_colors.dart';
-import 'package:ricky_and_morty/common/constants/ui/custom_icon_data.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
 import 'package:ricky_and_morty/apps/location/domain/models/location.dart';
 import 'package:ricky_and_morty/apps/location/presentation/location_details/locations_details_controller.dart';
 import 'package:ricky_and_morty/common/componets/cards/decorated_card.dart';
+import 'package:ricky_and_morty/common/componets/cards/icon_card.dart';
 import 'package:ricky_and_morty/common/componets/progress_indicators/custom_linear_progress.dart';
+import 'package:ricky_and_morty/common/componets/separators/horizontal_separator.dart';
 import 'package:ricky_and_morty/common/componets/separators/vertical_separator.dart';
+import 'package:ricky_and_morty/common/constants/ui/custom_colors.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_text_style.dart';
 import 'package:ricky_and_morty/common/states/states.dart';
 
 class LocationDetailsCard extends StatefulWidget {
+  final IconData icon;
+  final String title;
   final String url;
 
   const LocationDetailsCard({
     Key? key,
+    required this.icon,
+    required this.title,
     required this.url,
   }) : super(key: key);
 
@@ -42,14 +45,14 @@ class _LocationDetailsCardState extends State<LocationDetailsCard> {
         children: [
           Row(
             children: [
-              const IconCard(
-                icon: CustomIconData.location,
+              IconCard(
+                icon: widget.icon,
                 foregroundColor: CustomColors.pink,
                 backgroundColor: CustomColors.pinkLight,
               ),
               const HorizontalSeparator(),
               Text(
-                'Localização',
+                widget.title,
                 style: CustomTextStyle.titleMedium(context),
                 overflow: TextOverflow.ellipsis,
               ),

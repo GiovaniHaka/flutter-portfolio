@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
-import 'package:ricky_and_morty/common/constants/endpoints/ricky_morty_endpoints.dart';
 import 'package:ricky_and_morty/common/exceptions/failure.dart';
 import 'package:ricky_and_morty/services/http_client/domain/models/custom_request.dart';
 import 'package:ricky_and_morty/services/http_client/domain/models/custom_response.dart';
@@ -21,10 +18,7 @@ class LocationSourceImp implements LocationSource {
   @override
   Future<Either<Failure, Map<String, dynamic>>> getSingle(String url) async {
     try {
-      String path = RickMortyApi.locations;
-
-      final request = CustomRequest(path);
-
+      final request = CustomRequest(url);
       final response = await _httpClient.get(request);
       final status = response.status;
       final data = response.data;
@@ -40,7 +34,6 @@ class LocationSourceImp implements LocationSource {
           throw Exception();
       }
     } catch (e) {
-      log(e.toString());
       return Left(Failure('Erro ao buscar localização'));
     }
   }
