@@ -15,7 +15,7 @@ class GetSingleEpisodeImp implements GetSingleEpisode {
   @override
   Future<Either<Failure, Episode>> call(String url) async {
     try {
-      return await _repository.call(url);
+      return await _repository.getSingle(url);
     } catch (e) {
       throw Exception(e);
     }
