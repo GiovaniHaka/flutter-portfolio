@@ -83,6 +83,7 @@ class _EpisodeItemBody extends StatelessWidget {
               Text(
                 episode.name,
                 style: CustomTextStyle.titleSmall(context),
+                overflow: TextOverflow.ellipsis,
               ),
               Text(episode.airDate),
             ],
