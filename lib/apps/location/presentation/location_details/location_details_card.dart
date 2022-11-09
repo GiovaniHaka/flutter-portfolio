@@ -58,15 +58,15 @@ class _LocationDetailsCardState extends State<LocationDetailsCard> {
           const VerticalSeparator.medium(),
           RxBuilder(builder: (_) {
             switch (_controller.state) {
-              case States.loading:
-                return const CustomLinearProgress();
+              case States.error:
+                return const Text('Erro');
               case States.loaded:
                 return _controller.location.fold(
                   (failure) => Text(failure.message),
                   (location) => _LocationDetailsBody(location: location),
                 );
               default:
-                return const Text('Erro');
+                return const CustomLinearProgress();
             }
           })
         ],
