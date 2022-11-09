@@ -72,4 +72,26 @@ class HiveDatabaseImp implements LocalDatabase {
       throw Exception(e);
     }
   }
+
+  @override
+  Future<dynamic> getSingle(String schema, {required key}) async {
+    try {
+      var box = await Hive.openBox(schema);
+
+      if (box.isEmpty) {
+        return null;
+      }
+
+      final value = box.get(key);
+
+      if (value == null) {
+        return null;
+      }
+
+      return {key: value};
+    } catch (e) {
+      log(e.toString());
+      throw Exception(e);
+    }
+  }
 }

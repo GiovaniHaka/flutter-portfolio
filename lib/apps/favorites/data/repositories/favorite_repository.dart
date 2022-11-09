@@ -7,8 +7,9 @@ import 'package:ricky_and_morty/common/exceptions/failure.dart';
 abstract class FavoriteRepository {
   Future<Either<Failure, List<int>>> getAll();
   Future<Either<Failure, void>> add(int key);
+  Future<Either<Failure, bool>> getSingle(int key);
   Future<Either<Failure, void>> remove(int key);
-  Either<Failure, Stream<bool>> stream(int key);
+  Stream<Either<Failure, bool>> stream(int key);
 }
 
 class FavoriteRepositoryImp implements FavoriteRepository {
@@ -59,15 +60,32 @@ class FavoriteRepositoryImp implements FavoriteRepository {
   }
 
   @override
-  Either<Failure, Stream<bool>> stream(int key) {
+  Stream<Either<Failure, bool>> stream(int key) {
     try {
       final result = _source.stream(key);
+      return result.map((event) {
+        return event.fold(
+          (failure) => Left(failure),
+          (right) {
+            final value = right == null ? false : true;
+            return Right(value);
+          },
+        );
+      });
+    } catch (e) {
+      log(e.toString());
+      throw Exception(e);
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> getSingle(int key) async {
+    try {
+      final result = await _source.getSingle(key);
       return result.fold(
         (failure) => Left(failure),
         (right) {
-          final value = right.map((event) {
-            return event == null ? false : true;
-          });
+          final value = right == null ? false : true;
           return Right(value);
         },
       );
