@@ -10,6 +10,10 @@ abstract class GetSingleLocation {
 class GetSingleLocationImp implements GetSingleLocation {
   late LocationRepository _repository;
 
+  GetSingleLocationImp([LocationRepository? repository]) {
+    _repository = repository ?? LocationRepositoryImp();
+  }
+
   @override
   Future<Either<Failure, Location>> call(String url) async {
     try {

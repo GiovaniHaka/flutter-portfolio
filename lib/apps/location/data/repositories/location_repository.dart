@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:ricky_and_morty/apps/location/data/sources/location_source.dart';
 import 'package:ricky_and_morty/apps/location/domain/models/location.dart';
@@ -10,10 +12,22 @@ abstract class LocationRepository {
 class LocationRepositoryImp implements LocationRepository {
   late LocationSource _source;
 
+  LocationRepositoryImp([LocationSource? source]) {
+    _source = source ?? LocationSourceImp();
+  }
+
   @override
-  Future<Either<Failure, Location>> call(String url) {
+  Future<Either<Failure, Location>> call(String url) async {
     try {
-      throw UnimplementedError();
+      final result = await _source.call(url);
+
+      return result.fold(
+        (failure) => Left(failure),
+        (data) {
+          final location = Location.fromMap(data['results'].first);
+          return Right(location);
+        },
+      );
     } catch (e) {
       throw Exception(e);
     }
