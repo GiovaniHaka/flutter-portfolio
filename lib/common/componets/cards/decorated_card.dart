@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ricky_and_morty/common/componets/buttons/button_detector.dart';
+import 'package:ricky_and_morty/common/constants/ui/custom_colors.dart';
 import 'package:ricky_and_morty/common/constants/ui/padding_constants.dart';
 
 class DecoratedCard extends StatelessWidget {
@@ -12,7 +13,7 @@ class DecoratedCard extends StatelessWidget {
       {Key? key,
       required this.child,
       this.padding = defaultPadding,
-      this.color = Colors.transparent,
+      this.color = CustomColors.greyLight,
       this.onTap})
       : super(key: key);
 

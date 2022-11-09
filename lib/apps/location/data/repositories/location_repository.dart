@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:ricky_and_morty/apps/location/data/sources/location_source.dart';
 import 'package:ricky_and_morty/apps/location/domain/models/location.dart';
