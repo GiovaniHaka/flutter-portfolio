@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: CustomColors.backgroundColor,
         appBarTheme: const AppBarTheme(
           color: CustomColors.backgroundColor,
+          foregroundColor: CustomColors.pink,
           actionsIconTheme: IconThemeData(
             color: CustomColors.pink,
           ),

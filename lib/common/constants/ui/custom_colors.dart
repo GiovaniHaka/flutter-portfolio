@@ -8,6 +8,7 @@ extension CustomColors on ColorScheme {
   static const Color greyMedium = Color(0xffDDDDDD);
   static const Color greyDark = Color(0xff4E4E4E);
   static const Color greenStrong = Color(0xff008b09);
-  static const Color green = Color(0xff45d300);
   static const Color greenLight = Color(0xffd1f794);
+  static const Color purpleStrong = Color(0xff525AEB);
+  static const Color purpleLight = Color(0xffEEF0FF);
 }
