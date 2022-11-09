@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:ricky_and_morty/apps/characters/domain/models/request/all_request.dart';
 import 'package:ricky_and_morty/apps/characters/domain/models/request/multiple_request.dart';
@@ -10,8 +12,7 @@ import 'package:ricky_and_morty/services/http_client/domain/usecases/http_client
 abstract class CharactersSource {
   Future<Either<Failure, Map<String, dynamic>>> getAll(AllRequest req);
 
-  Future<Either<Failure, Map<String, dynamic>>> getMultiple(
-      MultipleRequest req);
+  Future<Either<Failure, List<dynamic>>> getMultiple(MultipleRequest req);
 }
 
 class CharactersSourceImp implements CharactersSource {
@@ -59,20 +60,15 @@ class CharactersSourceImp implements CharactersSource {
   }
 
   @override
-  Future<Either<Failure, Map<String, dynamic>>> getMultiple(
+  Future<Either<Failure, List<dynamic>>> getMultiple(
       MultipleRequest req) async {
     try {
       String path = RickMortyApi.characters;
-
-      final url = req.url;
       final ids = req.ids;
 
-      if (url != null) {
-        path = url;
-      }
-
       if (ids != null) {
-        /// TODO implementar ids
+        String idsStr = ids.join(',');
+        path = '${RickMortyApi.characters}/$idsStr';
       }
 
       final request = CustomRequest(path);
@@ -92,6 +88,7 @@ class CharactersSourceImp implements CharactersSource {
           throw UnimplementedError();
       }
     } catch (e) {
+      log(e.toString());
       throw Exception();
     }
   }
