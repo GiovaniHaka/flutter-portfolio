@@ -19,37 +19,34 @@ class CharacterDetailsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedCard(
-      color: CustomColors.greyLight,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            character.name,
-            style: CustomTextStyle.titleLarge(context),
-            overflow: TextOverflow.ellipsis,
-          ),
-          const VerticalSeparator.small(),
-          Wrap(
-            runSpacing: defaultSeparator,
-            spacing: defaultSeparator,
-            children: [
-              DetailClip(
-                icon: CustomIconData.specie,
-                backgroundColor: CustomColors.greenLight,
-                foregroundColor: CustomColors.greenStrong,
-                text: character.species,
-              ),
-              DetailClip(
-                icon: CustomIconData.aliveStatus,
-                backgroundColor: CustomColors.purpleLight,
-                foregroundColor: CustomColors.purpleStrong,
-                text: character.status.translation,
-              ),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          character.name,
+          style: CustomTextStyle.titleLarge(context),
+          overflow: TextOverflow.ellipsis,
+        ),
+        const VerticalSeparator.small(),
+        Wrap(
+          runSpacing: defaultSeparator,
+          spacing: defaultSeparator,
+          children: [
+            DetailClip(
+              icon: CustomIconData.specie,
+              backgroundColor: CustomColors.greenLight,
+              foregroundColor: CustomColors.greenStrong,
+              text: character.species,
+            ),
+            DetailClip(
+              icon: CustomIconData.aliveStatus,
+              backgroundColor: CustomColors.purpleLight,
+              foregroundColor: CustomColors.purpleStrong,
+              text: character.status.translation,
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

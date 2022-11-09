@@ -36,42 +36,44 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
           }),
         ),
       ),
-      body: Center(
-        child: RxBuilder(builder: (context) {
-          switch (controller.state) {
-            case States.initial:
-              return const Text('Seja bem vindo!');
-            case States.loading:
-              return const CustomCircularProgress();
-            case States.loaded:
-              return controller.characters.fold(
-                (failure) => Text(failure.message),
-                (characters) => ListView.separated(
-                  padding: const EdgeInsets.all(viewPadding),
-                  itemBuilder: (_, index) {
-                    final character = characters[index];
+      body: SafeArea(
+        child: Center(
+          child: RxBuilder(builder: (context) {
+            switch (controller.state) {
+              case States.initial:
+                return const Text('Seja bem vindo!');
+              case States.loading:
+                return const CustomCircularProgress();
+              case States.loaded:
+                return controller.characters.fold(
+                  (failure) => Text(failure.message),
+                  (characters) => ListView.separated(
+                    padding: const EdgeInsets.all(viewPadding),
+                    itemBuilder: (_, index) {
+                      final character = characters[index];
 
-                    return CharacterCard(
-                      character: character,
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          Routes.characterDetails,
-                          arguments: character,
-                        );
-                      },
-                    );
-                  },
-                  separatorBuilder: (_, index) {
-                    return const VerticalSeparator();
-                  },
-                  itemCount: characters.length,
-                ),
-              );
-            default:
-              return const Text('Erro');
-          }
-        }),
+                      return CharacterCard(
+                        character: character,
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            Routes.characterDetails,
+                            arguments: character,
+                          );
+                        },
+                      );
+                    },
+                    separatorBuilder: (_, index) {
+                      return const VerticalSeparator();
+                    },
+                    itemCount: characters.length,
+                  ),
+                );
+              default:
+                return const Text('Erro');
+            }
+          }),
+        ),
       ),
     );
   }
