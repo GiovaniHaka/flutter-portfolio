@@ -15,7 +15,7 @@ class EpisodeRepositoryImp implements EpisodeRepository {
   @override
   Future<Either<Failure, Episode>> getSingle(String url) async {
     try {
-      final result = await _source.call(url);
+      final result = await _source.getSingle(url);
 
       return result.fold(
         (failure) => Left(failure),

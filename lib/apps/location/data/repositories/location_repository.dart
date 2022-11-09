@@ -4,7 +4,7 @@ import 'package:ricky_and_morty/apps/location/domain/models/location.dart';
 import 'package:ricky_and_morty/common/exceptions/failure.dart';
 
 abstract class LocationRepository {
-  Future<Either<Failure, Location>> call(String url);
+  Future<Either<Failure, Location>> getSingle(String url);
 }
 
 class LocationRepositoryImp implements LocationRepository {
@@ -15,9 +15,9 @@ class LocationRepositoryImp implements LocationRepository {
   }
 
   @override
-  Future<Either<Failure, Location>> call(String url) async {
+  Future<Either<Failure, Location>> getSingle(String url) async {
     try {
-      final result = await _source.call(url);
+      final result = await _source.getSingle(url);
 
       return result.fold(
         (failure) => Left(failure),
