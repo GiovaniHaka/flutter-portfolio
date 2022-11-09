@@ -29,7 +29,7 @@ class LocationSourceImp implements LocationSource {
         case ResponseStatus.unknown:
           return Left(Failure('Não conseguimos encontrar a localização'));
         case ResponseStatus.error:
-          return Left(Failure('Erro ao encontrar localização'));
+          return Left(Failure('Erro ao encontrar local'));
         default:
           throw UnimplementedError();
       }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ricky_and_morty/common/componets/cards/info_card.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
 import 'package:ricky_and_morty/apps/episodes/domain/models/episode.dart';
@@ -42,7 +43,7 @@ class _EpisodeDetailsItemState extends State<EpisodeDetailsItem> {
               return const Text('Algo deu errado');
             case States.loaded:
               return _controller.episode.fold(
-                (failure) => Text(failure.message),
+                (failure) => InfoCard.failure(message: failure.message),
                 (episode) {
                   return _EpisodeItemBody(
                     key: UniqueKey(),

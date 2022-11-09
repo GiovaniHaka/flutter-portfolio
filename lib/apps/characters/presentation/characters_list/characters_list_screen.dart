@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ricky_and_morty/apps/characters/presentation/characters_list/characters_list_controller.dart';
 import 'package:ricky_and_morty/apps/characters/presentation/characters_list/components/character_card.dart';
+import 'package:ricky_and_morty/common/componets/cards/info_card.dart';
 import 'package:ricky_and_morty/common/componets/progress_indicators/app_bar_loading.dart';
 import 'package:ricky_and_morty/common/componets/progress_indicators/custom_circular_progress.dart';
 import 'package:ricky_and_morty/common/componets/separators/vertical_separator.dart';
@@ -46,7 +47,7 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
                 return const CustomCircularProgress();
               case States.loaded:
                 return controller.characters.fold(
-                  (failure) => Text(failure.message),
+                  (failure) => InfoCard.failure(message: failure.message),
                   (characters) => ListView.separated(
                     padding: const EdgeInsets.all(viewPadding),
                     itemBuilder: (_, index) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ricky_and_morty/common/componets/cards/info_card.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
 import 'package:ricky_and_morty/apps/location/domain/models/location.dart';
@@ -65,7 +66,7 @@ class _LocationDetailsCardState extends State<LocationDetailsCard> {
                 return const Text('Erro');
               case States.loaded:
                 return _controller.location.fold(
-                  (failure) => Text(failure.message),
+                  (failure) => InfoCard.failure(message: failure.message),
                   (location) => _LocationDetailsBody(location: location),
                 );
               default:
