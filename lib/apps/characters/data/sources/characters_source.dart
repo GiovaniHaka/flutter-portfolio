@@ -79,7 +79,10 @@ class CharactersSourceImp implements CharactersSource {
 
       switch (status) {
         case ResponseStatus.success:
-          return Right(data!);
+          if (data! is List) {
+            return Right(data!);
+          }
+          return Right([data!]);
         case ResponseStatus.unknown:
           return Left(Failure('Não conseguimos encontrar os personagens'));
         case ResponseStatus.error:
