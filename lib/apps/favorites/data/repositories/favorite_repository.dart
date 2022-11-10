@@ -10,6 +10,7 @@ abstract class FavoriteRepository {
   Future<Either<Failure, bool>> getSingle(int key);
   Future<Either<Failure, void>> remove(int key);
   Stream<Either<Failure, bool>> stream(int key);
+  Stream<Either<Failure, dynamic>> onChange();
 }
 
 class FavoriteRepositoryImp implements FavoriteRepository {
@@ -89,6 +90,24 @@ class FavoriteRepositoryImp implements FavoriteRepository {
           return Right(value);
         },
       );
+    } catch (e) {
+      log(e.toString());
+      throw Exception(e);
+    }
+  }
+
+  @override
+  Stream<Either<Failure, dynamic>> onChange() {
+    try {
+      final result = _source.onChange();
+      return result.map((event) {
+        return event.fold(
+          (failure) => Left(failure),
+          (right) {
+            return Right(right);
+          },
+        );
+      });
     } catch (e) {
       log(e.toString());
       throw Exception(e);

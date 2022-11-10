@@ -6,6 +6,7 @@ import 'package:ricky_and_morty/services/local_database/domain/usecases/delete_l
 import 'package:ricky_and_morty/services/local_database/domain/usecases/get_all_local_data.dart';
 import 'package:ricky_and_morty/services/local_database/domain/usecases/get_single_local_data.dart';
 import 'package:ricky_and_morty/services/local_database/domain/usecases/put_local_data.dart';
+import 'package:ricky_and_morty/services/local_database/domain/usecases/on_change_local_data.dart';
 import 'package:ricky_and_morty/services/local_database/domain/usecases/stream_local_data.dart';
 
 abstract class FavoriteSource {
@@ -14,6 +15,7 @@ abstract class FavoriteSource {
   Future<Either<Failure, void>> remove(int key);
   Future<Either<Failure, dynamic>> getSingle(int key);
   Stream<Either<Failure, dynamic>> stream(int key);
+  Stream<Either<Failure, dynamic>> onChange();
 }
 
 class FavoriteSourceImp implements FavoriteSource {
@@ -22,6 +24,7 @@ class FavoriteSourceImp implements FavoriteSource {
   late DeleteLocalData _deleteLocalData;
   late PutLocalData _putLocalData;
   late StreamLocalData _streamLocalData;
+  late OnChangeLocalData _onChangeLocalData;
 
   FavoriteSourceImp([
     GetSingleLocalData? getSingleLocalData,
@@ -29,12 +32,14 @@ class FavoriteSourceImp implements FavoriteSource {
     DeleteLocalData? deleteLocalData,
     PutLocalData? putLocalData,
     StreamLocalData? streamLocalData,
+    OnChangeLocalData? onChangeLocalData,
   ]) {
     _getSingleLocalData = getSingleLocalData ?? GetSingleLocalDataImp();
     _getAllLocalData = getAllLocalData ?? GetAllLocalDataImp();
     _deleteLocalData = deleteLocalData ?? DeleteLocalDataImp();
     _putLocalData = putLocalData ?? PutLocalDataImp();
     _streamLocalData = streamLocalData ?? StreamLocalDataImp();
+    _onChangeLocalData = onChangeLocalData ?? OnChangeLocalDataImp();
   }
 
   static const favoritesSchema = 'favorites';
@@ -99,6 +104,21 @@ class FavoriteSourceImp implements FavoriteSource {
     } catch (e) {
       log(e.toString());
       return Left(Failure('Não foi possível encontrar favorito'));
+    }
+  }
+
+  @override
+  Stream<Either<Failure, dynamic>> onChange() async* {
+    try {
+      final stream = _onChangeLocalData.call(favoritesSchema);
+      yield* stream.map(
+        (event) {
+          return Right(event);
+        },
+      );
+    } catch (e) {
+      log(e.toString());
+      yield Left(Failure('Não foi possível buscar o favorito'));
     }
   }
 }

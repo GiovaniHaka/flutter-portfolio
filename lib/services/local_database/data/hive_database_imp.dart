@@ -74,6 +74,25 @@ class HiveDatabaseImp implements LocalDatabase {
   }
 
   @override
+  Stream<dynamic> onChange(String schema) async* {
+    try {
+      await Hive.openBox(schema);
+
+      final box = Hive.box(schema).watch();
+
+      yield* box.map((event) {
+        if (event.value == null) {
+          return null;
+        }
+        return {event.key: event.value};
+      });
+    } catch (e) {
+      log(e.toString());
+      throw Exception(e);
+    }
+  }
+
+  @override
   Future<dynamic> getSingle(String schema, {required key}) async {
     try {
       var box = await Hive.openBox(schema);
