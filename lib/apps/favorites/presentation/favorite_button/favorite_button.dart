@@ -34,8 +34,8 @@ class _FavoriteButtonState extends State<FavoriteButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 30,
-      width: 30,
+      height: 40,
+      width: 40,
       child: RxBuilder(
         builder: (_) {
           const errorWidget = Icon(CustomIconData.error);
