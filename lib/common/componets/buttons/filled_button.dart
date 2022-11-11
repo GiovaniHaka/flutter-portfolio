@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ricky_and_morty/common/componets/progress_indicators/custom_circular_progress.dart';
+
 import 'package:ricky_and_morty/common/constants/ui/custom_colors.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_text_style.dart';
 import 'package:ricky_and_morty/common/constants/ui/padding_constants.dart';
@@ -9,6 +11,7 @@ class FilledButton extends StatelessWidget {
   final Color backgroundColor;
   final Color foregroundColor;
   final String text;
+  final bool isLoading;
 
   const FilledButton({
     Key? key,
@@ -16,6 +19,7 @@ class FilledButton extends StatelessWidget {
     required this.backgroundColor,
     required this.foregroundColor,
     required this.text,
+    required this.isLoading,
   }) : super(key: key);
 
   @override
@@ -57,7 +61,13 @@ class FilledButton extends StatelessWidget {
             },
           ),
         ),
-        child: Text(text),
+        child: isLoading
+            ? const SizedBox(
+                height: 25,
+                width: 25,
+                child: CustomCircularProgress(),
+              )
+            : Text(text),
       ),
     );
   }
@@ -68,5 +78,15 @@ class FilledButton extends StatelessWidget {
     required this.onTap,
     this.backgroundColor = Colors.black,
     this.foregroundColor = Colors.white,
+    this.isLoading = false,
+  }) : super(key: key);
+
+  const FilledButton.secondary({
+    Key? key,
+    required this.text,
+    required this.onTap,
+    this.backgroundColor = CustomColors.greyMedium,
+    this.foregroundColor = CustomColors.greyDark,
+    this.isLoading = false,
   }) : super(key: key);
 }
