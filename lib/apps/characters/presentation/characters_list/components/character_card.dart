@@ -27,42 +27,36 @@ class CharacterCard extends StatelessWidget {
       onTap: onTap,
       color: CustomColors.greyLight,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Flexible(child: CustomNetworkImage(url: character.image)),
+          Flexible(
+            flex: 2,
+            child: CustomNetworkImage(url: character.image),
+          ),
           const HorizontalSeparator(),
-          Expanded(
-            flex: 3,
+          Flexible(
+            flex: 5,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                Text(
+                  character.species,
+                  style: CustomTextStyle.labelMedium(context),
+                  overflow: TextOverflow.ellipsis,
+                ),
                 Text(
                   character.name,
                   style: CustomTextStyle.titleMedium(context),
                   overflow: TextOverflow.ellipsis,
                 ),
-                const VerticalSeparator.small(),
-                Row(
-                  children: [
-                    Expanded(
-                      child: IconSpecs(
-                        icon: CustomIconData.specie,
-                        text: character.species,
-                      ),
-                    ),
-                    const HorizontalSeparator(),
-                    Expanded(
-                      child: IconSpecs(
-                        icon: CustomIconData.episode,
-                        text: '${character.episode.length}',
-                      ),
-                    ),
-                  ],
+                const VerticalSeparator(),
+                IconSpecs(
+                  icon: CustomIconData.episode,
+                  text: '${character.episode.length}',
                 )
               ],
             ),
           ),
-          const HorizontalSeparator(),
           FavoriteButton(id: character.id),
         ],
       ),

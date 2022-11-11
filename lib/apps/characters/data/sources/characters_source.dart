@@ -26,19 +26,21 @@ class CharactersSourceImp implements CharactersSource {
   Future<Either<Failure, Map<String, dynamic>>> getAll(AllRequest req) async {
     try {
       String path = RickMortyApi.characters;
+      Map<String, dynamic>? query;
 
       final url = req.url;
       final filters = req.filters;
 
+      if (filters != null) {
+        query = filters.toMap();
+      }
+
       if (url != null) {
         path = url;
+        query = null;
       }
 
-      if (filters != null) {
-        /// TODO implementar filtros
-      }
-
-      final request = CustomRequest(path);
+      final request = CustomRequest(path, queryParameters: query);
 
       final response = await _httpClient.get(request);
       final status = response.status;
@@ -47,10 +49,18 @@ class CharactersSourceImp implements CharactersSource {
       switch (status) {
         case ResponseStatus.success:
           return Right(data!);
+        case ResponseStatus.badRequest:
+          return Left(Failure(
+            'Não conseguimos encontrar os personagens solicitados',
+          ));
         case ResponseStatus.unknown:
-          return Left(Failure('Não conseguimos encontrar os personagens'));
+          return Left(Failure(
+            'Não conseguimos encontrar os personagens',
+          ));
         case ResponseStatus.error:
-          return Left(Failure('Erro ao encontrar personagens'));
+          return Left(Failure(
+            'Erro ao encontrar personagens',
+          ));
         default:
           throw Exception();
       }
