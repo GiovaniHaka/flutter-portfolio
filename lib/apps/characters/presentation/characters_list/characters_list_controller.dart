@@ -23,12 +23,15 @@ class CharactersListController extends StatesController {
       RxNotifier<Either<Failure, List<Character>>>(const Right([]));
   Either<Failure, List<Character>> get characters => _characters.value;
 
+  final _filters = RxNotifier<CharacterFilters>(CharacterFilters());
+  CharacterFilters get filters => _filters.value;
+
   getCharacters() async {
     try {
       setState(States.loading);
       final result = await _getAllCharacters.call(
         AllRequest(
-          filters: CharacterFilters(),
+          filters: filters,
         ),
       );
 
@@ -43,5 +46,11 @@ class CharactersListController extends StatesController {
     } catch (e) {
       setState(States.error);
     }
+  }
+
+  searchWithFilters(CharacterFilters filters) {
+    _characters.value = const Right([]);
+    _filters.value = filters;
+    getCharacters();
   }
 }

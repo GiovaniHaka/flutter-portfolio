@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:ricky_and_morty/apps/characters/domain/models/character_filters.dart';
 import 'package:ricky_and_morty/apps/characters/presentation/characters_list/characters_list_controller.dart';
 import 'package:ricky_and_morty/apps/characters/presentation/characters_list/components/character_card.dart';
 import 'package:ricky_and_morty/apps/characters/presentation/characters_list/components/filters_form.dart';
@@ -42,8 +39,11 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
             customModalBottomSheet(
               context: context,
               child: FiltersForm(
-                initialFilters: CharacterFilters(),
-                onConfirm: (value) => log(value.toString()),
+                initialFilters: controller.filters,
+                onConfirm: (value) {
+                  controller.searchWithFilters(value);
+                  Navigator.pop(context);
+                },
               ),
             );
           },

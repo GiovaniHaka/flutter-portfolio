@@ -27,6 +27,13 @@ class _FiltersFormState extends State<FiltersForm> {
   String? species;
 
   @override
+  void initState() {
+    super.initState();
+    name = widget.initialFilters.name;
+    species = widget.initialFilters.species;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Unfocuser(
       child: SingleChildScrollView(
@@ -48,7 +55,7 @@ class _FiltersFormState extends State<FiltersForm> {
             CustomFormField(
               labelText: 'Nome (opcional)',
               hintText: 'Preencha o nome do personagem',
-              initialValue: widget.initialFilters.name ?? '',
+              initialValue: name ?? '',
               onChanged: (val) {
                 setState(() {
                   name = val;
@@ -59,7 +66,7 @@ class _FiltersFormState extends State<FiltersForm> {
             CustomFormField(
               labelText: 'Espécie (opcional)',
               hintText: 'Preencha o a espécie do personagem',
-              initialValue: widget.initialFilters.species ?? '',
+              initialValue: species ?? '',
               onChanged: (val) {
                 setState(() {
                   species = val;
