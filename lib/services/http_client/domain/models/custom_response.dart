@@ -1,6 +1,7 @@
 enum ResponseStatus {
   success,
   unknown,
+  badRequest,
   error,
 }
 

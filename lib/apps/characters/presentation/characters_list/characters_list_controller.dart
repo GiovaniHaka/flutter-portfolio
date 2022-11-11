@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:ricky_and_morty/apps/characters/domain/models/character.dart';
+import 'package:ricky_and_morty/apps/characters/domain/models/character_filters.dart';
 import 'package:ricky_and_morty/apps/characters/domain/models/request/all_request.dart';
 import 'package:ricky_and_morty/apps/characters/domain/usecases/get_all_characters.dart';
 import 'package:ricky_and_morty/common/controller/states_controller.dart';
@@ -25,7 +26,11 @@ class CharactersListController extends StatesController {
   getCharacters() async {
     try {
       setState(States.loading);
-      final result = await _getAllCharacters.call(AllRequest());
+      final result = await _getAllCharacters.call(
+        AllRequest(
+          filters: CharacterFilters(),
+        ),
+      );
 
       result.fold(
         (failure) => _characters.value = Left(failure),
