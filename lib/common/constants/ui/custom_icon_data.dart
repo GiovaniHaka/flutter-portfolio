@@ -11,4 +11,6 @@ class CustomIconData {
   static const favoriteOn = Icons.favorite;
   static const favoriteOff = Icons.favorite_border;
   static const search = Icons.search_outlined;
+  static const filter = Icons.filter_list;
+  static const close = Icons.close;
 }

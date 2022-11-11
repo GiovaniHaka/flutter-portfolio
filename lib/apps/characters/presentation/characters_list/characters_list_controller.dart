@@ -26,14 +26,10 @@ class CharactersListController extends StatesController {
   final _filters = RxNotifier<CharacterFilters>(CharacterFilters());
   CharacterFilters get filters => _filters.value;
 
-  getCharacters() async {
+  getCharacters(AllRequest request) async {
     try {
       setState(States.loading);
-      final result = await _getAllCharacters.call(
-        AllRequest(
-          filters: filters,
-        ),
-      );
+      final result = await _getAllCharacters.call(request);
 
       result.fold(
         (failure) => _characters.value = Left(failure),
@@ -48,9 +44,16 @@ class CharactersListController extends StatesController {
     }
   }
 
+  searchWithoutFilters() {
+    _characters.value = const Right([]);
+    _filters.value = CharacterFilters();
+    getCharacters(AllRequest());
+  }
+
   searchWithFilters(CharacterFilters filters) {
     _characters.value = const Right([]);
     _filters.value = filters;
-    getCharacters();
+    final request = AllRequest(filters: filters);
+    getCharacters(request);
   }
 }

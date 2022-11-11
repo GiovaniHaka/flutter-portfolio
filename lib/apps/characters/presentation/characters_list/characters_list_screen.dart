@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ricky_and_morty/apps/characters/presentation/characters_list/characters_list_controller.dart';
+import 'package:ricky_and_morty/apps/characters/presentation/characters_list/components/active_filters.dart';
 import 'package:ricky_and_morty/apps/characters/presentation/characters_list/components/characters_list.dart';
 import 'package:ricky_and_morty/apps/characters/presentation/characters_list/components/filters_form.dart';
 import 'package:ricky_and_morty/common/componets/modals/custom_modal_bottom_sheet.dart';
@@ -7,6 +8,7 @@ import 'package:ricky_and_morty/common/componets/progress_indicators/app_bar_loa
 import 'package:ricky_and_morty/common/constants/ui/custom_icon_data.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_text_style.dart';
 import 'package:ricky_and_morty/common/constants/ui/padding_constants.dart';
+import 'package:ricky_and_morty/common/constants/ui/separator_constants.dart';
 import 'package:ricky_and_morty/navigator/routes.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
@@ -23,7 +25,7 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
   @override
   void initState() {
     super.initState();
-    controller.getCharacters();
+    controller.searchWithoutFilters();
   }
 
   @override
@@ -64,11 +66,30 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
               ),
             ),
             SliverPadding(
-              padding: const EdgeInsets.all(viewPadding),
+              padding: const EdgeInsets.symmetric(
+                horizontal: viewPadding,
+                vertical: defaultSeparator,
+              ),
               sliver: SliverToBoxAdapter(
                 child: Text(
                   'Personagens',
                   style: CustomTextStyle.headlineSmall(context),
+                ),
+              ),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: viewPadding,
+                vertical: defaultSeparator,
+              ),
+              sliver: SliverToBoxAdapter(
+                child: RxBuilder(
+                  builder: (_) {
+                    return ActiveFilters(
+                      filters: controller.filters,
+                      onTap: () => controller.searchWithoutFilters(),
+                    );
+                  },
                 ),
               ),
             ),
