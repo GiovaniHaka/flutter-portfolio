@@ -30,6 +30,12 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.pushNamed(context, Routes.favorites),
+            icon: const Icon(Icons.favorite),
+          )
+        ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(10),
           child: RxBuilder(builder: (context) {

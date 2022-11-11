@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:ricky_and_morty/apps/characters/domain/models/character.dart';
+import 'package:ricky_and_morty/apps/favorites/presentation/favorite_button/favorite_button.dart';
 import 'package:ricky_and_morty/common/componets/separators/horizontal_separator.dart';
 import 'package:ricky_and_morty/common/componets/separators/vertical_separator.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_colors.dart';
@@ -22,12 +23,18 @@ class CharacterDetailsCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          character.name,
-          style: CustomTextStyle.titleLarge(context),
-          overflow: TextOverflow.ellipsis,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              character.name,
+              style: CustomTextStyle.titleLarge(context),
+              overflow: TextOverflow.ellipsis,
+            ),
+            FavoriteButton(id: character.id),
+          ],
         ),
-        const VerticalSeparator.small(),
+        const VerticalSeparator(),
         Wrap(
           runSpacing: defaultSeparator,
           spacing: defaultSeparator,

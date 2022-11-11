@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_colors.dart';
 import 'package:ricky_and_morty/navigator/routes.dart';
+import 'package:ricky_and_morty/services/local_database/domain/usecases/initialize_local_database.dart';
 
 void main() {
+  InitializeLocalDatabaseImp().call();
   runApp(const MyApp());
 }
 
