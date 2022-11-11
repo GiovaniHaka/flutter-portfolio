@@ -26,34 +26,63 @@ class CharactersListController extends StatesController {
   final _filters = RxNotifier<CharacterFilters>(CharacterFilters());
   CharacterFilters get filters => _filters.value;
 
-  getCharacters(AllRequest request) async {
+  final _moreState = RxNotifier<States>(States.initial);
+  States get seeMoreState => _moreState.value;
+
+  _getCharacters(AllRequest request) async {
     try {
-      setState(States.loading);
       final result = await _getAllCharacters.call(request);
+
+      List<Character> oldCharacters =
+          characters.foldRight([], (r, previous) => r);
 
       result.fold(
         (failure) => _characters.value = Left(failure),
         (response) {
           _lastInfo.value = response.info;
-          _characters.value = Right(response.characters);
+          final newCharacters = response.characters;
+          _characters.value = Right(oldCharacters + newCharacters);
         },
       );
+    } catch (e) {
+      throw Exception();
+    }
+  }
+
+  searchWithoutFilters() async {
+    try {
+      setState(States.loading);
+      _characters.value = const Right([]);
+      _filters.value = CharacterFilters();
+      await _getCharacters(AllRequest());
       setState(States.loaded);
     } catch (e) {
       setState(States.error);
     }
   }
 
-  searchWithoutFilters() {
-    _characters.value = const Right([]);
-    _filters.value = CharacterFilters();
-    getCharacters(AllRequest());
+  searchWithFilters(CharacterFilters filters) async {
+    try {
+      setState(States.loading);
+      _characters.value = const Right([]);
+      _filters.value = filters;
+      final request = AllRequest(filters: filters);
+      await _getCharacters(request);
+      setState(States.loaded);
+    } catch (e) {
+      setState(States.error);
+    }
   }
 
-  searchWithFilters(CharacterFilters filters) {
-    _characters.value = const Right([]);
-    _filters.value = filters;
-    final request = AllRequest(filters: filters);
-    getCharacters(request);
+  seeMore() async {
+    try {
+      _moreState.value = States.loading;
+      final nextPageUrl = lastInfo?.next;
+      final request = AllRequest(url: nextPageUrl);
+      await _getCharacters(request);
+      _moreState.value = States.loaded;
+    } catch (e) {
+      _moreState.value = States.error;
+    }
   }
 }
