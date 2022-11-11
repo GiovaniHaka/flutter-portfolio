@@ -10,4 +10,5 @@ class CustomIconData {
   static const created = Icons.create_outlined;
   static const favoriteOn = Icons.favorite;
   static const favoriteOff = Icons.favorite_border;
+  static const search = Icons.search_outlined;
 }

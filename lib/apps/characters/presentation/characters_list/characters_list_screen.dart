@@ -1,10 +1,16 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:ricky_and_morty/apps/characters/domain/models/character_filters.dart';
 import 'package:ricky_and_morty/apps/characters/presentation/characters_list/characters_list_controller.dart';
 import 'package:ricky_and_morty/apps/characters/presentation/characters_list/components/character_card.dart';
+import 'package:ricky_and_morty/apps/characters/presentation/characters_list/components/filters_form.dart';
 import 'package:ricky_and_morty/common/componets/cards/info_card.dart';
+import 'package:ricky_and_morty/common/componets/modals/custom_modal_bottom_sheet.dart';
 import 'package:ricky_and_morty/common/componets/progress_indicators/app_bar_loading.dart';
 import 'package:ricky_and_morty/common/componets/progress_indicators/custom_circular_progress.dart';
 import 'package:ricky_and_morty/common/componets/separators/vertical_separator.dart';
+import 'package:ricky_and_morty/common/constants/ui/custom_icon_data.dart';
 import 'package:ricky_and_morty/common/constants/ui/padding_constants.dart';
 import 'package:ricky_and_morty/common/states/states.dart';
 import 'package:ricky_and_morty/navigator/routes.dart';
@@ -30,6 +36,18 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(CustomIconData.search),
+          onPressed: () {
+            customModalBottomSheet(
+              context: context,
+              child: FiltersForm(
+                initialFilters: CharacterFilters(),
+                onConfirm: (value) => log(value.toString()),
+              ),
+            );
+          },
+        ),
         actions: [
           IconButton(
             onPressed: () => Navigator.pushNamed(context, Routes.favorites),

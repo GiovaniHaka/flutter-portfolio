@@ -1,6 +1,6 @@
 class CharacterFilters {
-  final String? name;
-  final String? species;
+  String? name;
+  String? species;
 
   CharacterFilters({
     this.name,
@@ -20,4 +20,7 @@ class CharacterFilters {
 
     return map;
   }
+
+  @override
+  String toString() => 'CharacterFilters(name: $name, species: $species)';
 }
