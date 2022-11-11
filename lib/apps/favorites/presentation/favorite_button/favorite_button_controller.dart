@@ -35,7 +35,7 @@ class FavoriteButtonController extends StatesController {
   final _favorite = RxNotifier<Either<Failure, bool>>(const Right(false));
   Either<Failure, bool> get favorite => _favorite.value;
 
-  initialize() async {
+  Future<void> initialize() async {
     try {
       final singleFavorite = await _getSingleFavorite.call(id);
       singleFavorite.fold(
@@ -56,7 +56,7 @@ class FavoriteButtonController extends StatesController {
     }
   }
 
-  onHandleAddFavorite() async {
+  Future<void> onHandleAddFavorite() async {
     try {
       await _addFavorite.call(id);
     } catch (e) {
@@ -64,7 +64,7 @@ class FavoriteButtonController extends StatesController {
     }
   }
 
-  onHandleRemoveFavorite() async {
+  Future<void> onHandleRemoveFavorite() async {
     try {
       await _removeFavorite.call(id);
     } catch (e) {

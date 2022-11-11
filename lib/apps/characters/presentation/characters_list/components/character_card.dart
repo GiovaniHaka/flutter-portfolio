@@ -29,10 +29,10 @@ class CharacterCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(child: CustomNetworkImage(url: character.image)),
+          Flexible(child: CustomNetworkImage(url: character.image)),
           const HorizontalSeparator(),
           Expanded(
-            flex: 4,
+            flex: 3,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
