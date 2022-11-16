@@ -9,4 +9,7 @@ class GetAllCharactersResponse {
     required this.info,
     required this.characters,
   });
+
+  @override
+  String toString() => 'GetAllCharactersResponse(info: $info, characters: $characters)';
 }

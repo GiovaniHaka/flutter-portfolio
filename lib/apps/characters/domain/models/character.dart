@@ -51,13 +51,13 @@ class Character {
 }
 
 class CharacterLocation {
+  String name;
+  String url;
+
   CharacterLocation({
     required this.name,
     required this.url,
   });
-
-  String name;
-  String url;
 
   factory CharacterLocation.fromMap(Map<String, dynamic> map) {
     return CharacterLocation(
@@ -65,16 +65,19 @@ class CharacterLocation {
       url: map['url'],
     );
   }
+
+  @override
+  String toString() => 'CharacterLocation(name: $name, url: $url)';
 }
 
 class CharacterOrigin {
+  String name;
+  String url;
+
   CharacterOrigin({
     required this.name,
     required this.url,
   });
-
-  String name;
-  String url;
 
   factory CharacterOrigin.fromMap(Map<String, dynamic> map) {
     return CharacterOrigin(
@@ -82,6 +85,9 @@ class CharacterOrigin {
       url: map['url'],
     );
   }
+
+  @override
+  String toString() => 'CharacterOrigin(name: $name, url: $url)';
 }
 
 enum CharacterStatus {
