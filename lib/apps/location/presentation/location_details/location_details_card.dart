@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ricky_and_morty/common/componets/cards/info_card.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
 import 'package:ricky_and_morty/apps/location/domain/models/location.dart';
 import 'package:ricky_and_morty/apps/location/presentation/location_details/locations_details_controller.dart';
 import 'package:ricky_and_morty/common/componets/cards/decorated_card.dart';
 import 'package:ricky_and_morty/common/componets/cards/icon_card.dart';
+import 'package:ricky_and_morty/common/componets/cards/info_card.dart';
 import 'package:ricky_and_morty/common/componets/progress_indicators/custom_linear_progress.dart';
 import 'package:ricky_and_morty/common/componets/separators/horizontal_separator.dart';
 import 'package:ricky_and_morty/common/componets/separators/vertical_separator.dart';
@@ -17,12 +17,14 @@ class LocationDetailsCard extends StatefulWidget {
   final IconData icon;
   final String title;
   final String url;
+  final String name;
 
   const LocationDetailsCard({
     Key? key,
     required this.icon,
     required this.title,
     required this.url,
+    required this.name,
   }) : super(key: key);
 
   @override
@@ -61,6 +63,10 @@ class _LocationDetailsCardState extends State<LocationDetailsCard> {
           ),
           const VerticalSeparator.medium(),
           RxBuilder(builder: (_) {
+            if (widget.name == 'unknown') {
+              return const InfoCard(message: 'Informação desconhecida');
+            }
+
             switch (_controller.state) {
               case States.error:
                 return const Text('Erro');
