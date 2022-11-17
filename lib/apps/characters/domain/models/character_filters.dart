@@ -10,12 +10,14 @@ class CharacterFilters {
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {};
 
-    if (name != null) {
+    final nameVal = name;
+    if (nameVal != null && nameVal.isNotEmpty) {
       map['name'] = name;
     }
 
-    if (species != null) {
-      map['species'] = species;
+    final speciesVal = species;
+    if (speciesVal != null && speciesVal.isNotEmpty) {
+      map['species'] = speciesVal;
     }
 
     return map;
