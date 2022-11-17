@@ -30,7 +30,7 @@ class FavoriteButtonController extends StatesController {
     _streamFavorite = streamFavorite ?? StreamFavoriteImp();
   }
 
-  late StreamSubscription<Either<Failure, bool>> _subscription;
+  StreamSubscription<Either<Failure, bool>>? _subscription;
 
   final _favorite = RxNotifier<Either<Failure, bool>>(const Right(false));
   Either<Failure, bool> get favorite => _favorite.value;
@@ -73,7 +73,6 @@ class FavoriteButtonController extends StatesController {
   }
 
   dispose() {
-    _subscription.cancel();
-    _favorite.dispose();
+    _subscription?.cancel();
   }
 }

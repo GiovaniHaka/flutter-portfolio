@@ -9,6 +9,7 @@ customModalBottomSheet({
   return showModalBottomSheet<void>(
     context: context,
     backgroundColor: CustomColors.backgroundColor,
+    isScrollControlled: true,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(defaultRadius),
@@ -16,8 +17,11 @@ customModalBottomSheet({
       ),
     ),
     builder: (_) {
-      return SafeArea(
-        child: child,
+      return Padding(
+        padding: MediaQuery.of(context).viewInsets,
+        child: SafeArea(
+          child: child,
+        ),
       );
     },
   );
