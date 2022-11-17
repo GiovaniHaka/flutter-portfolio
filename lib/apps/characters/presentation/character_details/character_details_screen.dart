@@ -5,7 +5,6 @@ import 'package:ricky_and_morty/apps/characters/presentation/character_details/c
 import 'package:ricky_and_morty/apps/episodes/presentation/episode_details/episodes_list_card.dart';
 import 'package:ricky_and_morty/apps/location/presentation/location_details/location_details_card.dart';
 import 'package:ricky_and_morty/common/componets/images/custom_network_image.dart';
-import 'package:ricky_and_morty/common/componets/separators/vertical_separator.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_icon_data.dart';
 import 'package:ricky_and_morty/common/constants/ui/padding_constants.dart';
 
@@ -19,36 +18,51 @@ class CharacterDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double statusBarHeight = MediaQuery.of(context).viewPadding.top;
     return Scaffold(
-      appBar: AppBar(),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(viewPadding),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              CustomNetworkImage(url: character.image),
-              const VerticalSeparator.large(),
-              CharacterDetailsCard(character: character),
-              const VerticalSeparator.large(),
-              LocationDetailsCard(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: screenWidth - statusBarHeight,
+            flexibleSpace: CustomNetworkImage(url: character.image),
+          ),
+          // CustomNetworkImage(url: character.image),
+          SliverPadding(
+            padding: const EdgeInsets.all(viewPadding),
+            sliver: SliverToBoxAdapter(
+              child: CharacterDetailsCard(character: character),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(viewPadding),
+            sliver: SliverToBoxAdapter(
+              child: LocationDetailsCard(
                 title: 'Origem',
                 icon: CustomIconData.origin,
                 name: character.origin.name,
                 url: character.origin.url,
               ),
-              const VerticalSeparator.large(),
-              LocationDetailsCard(
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(viewPadding),
+            sliver: SliverToBoxAdapter(
+              child: LocationDetailsCard(
                 title: 'Localização',
                 icon: CustomIconData.location,
                 name: character.location.name,
                 url: character.location.url,
               ),
-              const VerticalSeparator.large(),
-              EpisodesListCard(urls: character.episode),
-            ],
+            ),
           ),
-        ),
+          SliverPadding(
+            padding: const EdgeInsets.all(viewPadding),
+            sliver: SliverToBoxAdapter(
+              child: EpisodesListCard(urls: character.episode),
+            ),
+          ),
+        ],
       ),
     );
   }
