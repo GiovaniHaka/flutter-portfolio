@@ -41,6 +41,12 @@ class _LocationDetailsCardState extends State<LocationDetailsCard> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DecoratedCard(
       child: Column(
@@ -70,11 +76,13 @@ class _LocationDetailsCardState extends State<LocationDetailsCard> {
             switch (_controller.state) {
               case States.error:
                 return const InfoCard.failure(message: 'Algo deu errado');
+
               case States.loaded:
                 return _controller.location.fold(
                   (failure) => InfoCard.failure(message: failure.message),
                   (location) => _LocationDetailsBody(location: location),
                 );
+
               default:
                 return const CustomLinearProgress();
             }

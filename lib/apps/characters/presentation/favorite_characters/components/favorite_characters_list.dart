@@ -26,6 +26,7 @@ class FavoriteCharactersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late Widget widget;
+
     switch (state) {
       case States.loaded:
         return favorites.fold(
@@ -55,20 +56,24 @@ class FavoriteCharactersList extends StatelessWidget {
             );
           },
         );
+
       case States.empty:
         widget = const EmptyDataScreen(
           content:
               'Você ainda não possui personagens favoritos. Adicione e encontre-os aqui!',
         );
         break;
+
       case States.error:
         widget = const ErrorDataScreen();
         break;
+
       default:
         widget = const Center(
           child: CustomCircularProgress(),
         );
     }
+
     return SliverToBoxAdapter(
       child: widget,
     );

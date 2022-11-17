@@ -33,4 +33,8 @@ class LocationDetailsController extends StatesController {
       setState(States.error);
     }
   }
+
+  dispose() {
+    _location.dispose();
+  }
 }

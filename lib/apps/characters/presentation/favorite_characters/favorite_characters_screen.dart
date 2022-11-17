@@ -24,6 +24,12 @@ class _FavoriteCharactersScreenState extends State<FavoriteCharactersScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(

@@ -9,8 +9,6 @@ class Routes {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   static const String root = '/';
-
-  // Authentication
   static const String characterDetails = '/character/details';
   static const String favorites = '/favorites';
 
