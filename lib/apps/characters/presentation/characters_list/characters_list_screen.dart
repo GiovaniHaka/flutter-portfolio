@@ -8,6 +8,7 @@ import 'package:ricky_and_morty/common/componets/modals/custom_modal_bottom_shee
 import 'package:ricky_and_morty/common/componets/progress_indicators/app_bar_loading.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_icon_data.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_text_style.dart';
+import 'package:ricky_and_morty/common/constants/ui/images_constants.dart';
 import 'package:ricky_and_morty/common/constants/ui/padding_constants.dart';
 import 'package:ricky_and_morty/common/constants/ui/separator_constants.dart';
 import 'package:ricky_and_morty/common/states/states.dart';
@@ -66,6 +67,10 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
                   return AppBarLoading(state: controller.state);
                 }),
               ),
+              title: Image.asset(
+                ImageConstants.rickAndMortyLogo,
+                height: 40,
+              ),
             ),
             SliverPadding(
               padding: const EdgeInsets.symmetric(
@@ -115,7 +120,8 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
                     final haveMore = controller.lastInfo?.next != null;
 
                     if (isLoaded && haveMore) {
-                      final isLoading = controller.seeMoreState == States.loading;
+                      final isLoading =
+                          controller.seeMoreState == States.loading;
 
                       return FilledButton.secondary(
                         text: 'Ver mais',

@@ -5,6 +5,8 @@ import 'package:ricky_and_morty/apps/characters/domain/models/character.dart';
 import 'package:ricky_and_morty/apps/characters/presentation/characters_list/components/character_card.dart';
 import 'package:ricky_and_morty/common/componets/cards/info_card.dart';
 import 'package:ricky_and_morty/common/componets/progress_indicators/custom_circular_progress.dart';
+import 'package:ricky_and_morty/common/componets/screens/empty_data_screen.dart';
+import 'package:ricky_and_morty/common/componets/screens/error_data_screen.dart';
 import 'package:ricky_and_morty/common/componets/separators/vertical_separator.dart';
 import 'package:ricky_and_morty/common/componets/slivers/sliver_list_separated.dart';
 import 'package:ricky_and_morty/common/exceptions/failure.dart';
@@ -54,12 +56,13 @@ class FavoriteCharactersList extends StatelessWidget {
           },
         );
       case States.empty:
-        widget = const Text(
-          'Você não possui personagens favoritos',
+        widget = const EmptyDataScreen(
+          content:
+              'Você ainda não possui personagens favoritos. Adicione e encontre-os aqui!',
         );
         break;
       case States.error:
-        widget = const Text('Erro');
+        widget = const ErrorDataScreen();
         break;
       default:
         widget = const Center(

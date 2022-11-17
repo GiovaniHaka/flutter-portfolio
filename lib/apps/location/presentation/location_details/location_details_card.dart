@@ -69,7 +69,7 @@ class _LocationDetailsCardState extends State<LocationDetailsCard> {
 
             switch (_controller.state) {
               case States.error:
-                return const Text('Erro');
+                return const InfoCard.failure(message: 'Algo deu errado');
               case States.loaded:
                 return _controller.location.fold(
                   (failure) => InfoCard.failure(message: failure.message),
