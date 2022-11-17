@@ -9,6 +9,23 @@ b. Detalhes do personagem - exibe os detalhes do personagem selecionado, exibind
 c. Personagens favoritos - exibe uma lista de personagens que foram adicionados aos favoritos, sendo possível removê-los.
 
 ---
+## Arquitetura
+
+O projeto foi desenvolvido utilizando a arquitetura em camadas, sendo inspirada no livro Clean Architecture, Robert Cecil Martin. Esta arquitetura permite o realizar um desenvolvimento baseado em testes, com criação de contratos e interfaces para classes, seguindo pricípios de responsabilidade única. São as camadas:
+
+- domain: camada que contém os modelos e casos de uso de cada feature.
+
+- data: contendo geralmente duas pastas, sendo elas "repositories" que conecta a camada de domain à fo external, realizando também a função de adapters, e a pasta "sources" que realiza conexão externa com os dados.
+
+- presentation: esta camada contém a interface do aplicativo, e realiza a interação direta com o usuário.
+
+ Nas camadas de apresentação, foi utilizado o padrão MVC (Model, View Controller), o que facilita na integração da interface com as camadas de domínio e modelos. 
+ 
+ Também foi utilizado programação funcional, que facilita a propagação de informação através das camadas, bem como o tratamento e exibição de erros ao usuário. 
+ 
+ Por fim, foi desenvolvido um gerencimento de estados, que permite alterar o estado da interface, através da interação do usuário com o aplicativo.
+
+---
 ## Executando Aplicação
 
 Para executar este aplicativo é necessário realizar a instalação prévia de Dart e Flutter em sua máquina. É possível realizar a instalação a partir da documentação oficial, encontrada [aqui](https://docs.flutter.dev/get-started/install). Este projeto foi desenvolvido em Flutter (3.3.7) e Dart (2.18.4), sendo assim, será necessária a instalação de versões semelhantes ou posteriores ao sdk utilizado. 
@@ -120,6 +137,23 @@ a. Character List - displays a list of characters from Rick & Morty series, show
 b. Character Details - displays details for the selected character, showing their picture, specific details, origin, location and episodes. Also it is possible to add the character to favorites.
 
 c. Favorite Characters - displays a list of characters that have been added to favorites, and eventually can be removed.
+
+---
+## Architecture
+
+The project was developed using layered architecture, being inspired by the book Clean Architecture, by Robert Cecil Martin. This architecture allows test driven development, with the creation of contracts and interfaces for classes, following principles of single responsibility. These are the layers:
+
+- domain: layer that contains the models and usecases of each feature.
+
+- data: generally containing two folders, namely "repositories" which connects the domain layer to the external layer, also performing the function of adapters, and the folder "sources" which performs external connection with the data.
+
+- presentation: this layer contains the application's interface, and performs direct interaction with the user.
+
+In the presentation layers, was used MVC (Model, View Controller) pattern, which facilitates the integration of the interface with the domain and model layers.
+ 
+Functional programming was also used, which facilitates the propagation of information through the layers, as well as the treatment and display of errors to the user.
+ 
+Finally, a state management was developed, which allows changing the state of the interface, through the user's interaction with the application.
 
 ---
 ## Getting Started
