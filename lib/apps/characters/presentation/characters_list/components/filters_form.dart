@@ -40,6 +40,7 @@ class _FiltersFormState extends State<FiltersForm> {
         padding: const EdgeInsets.all(viewPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

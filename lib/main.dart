@@ -5,6 +5,7 @@ import 'package:ricky_and_morty/services/local_database/domain/usecases/initiali
 
 void main() {
   InitializeLocalDatabaseImp().call();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
