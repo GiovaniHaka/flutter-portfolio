@@ -38,30 +38,32 @@ class EpisodesListCard extends StatelessWidget {
             ],
           ),
           const VerticalSeparator.medium(),
-          Builder(builder: (_) {
-            if (urls.isEmpty) {
-              return const Text(
-                'Este personagem não participou de nenhum episódio',
-              );
-            }
-            return ListView.separated(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (_, index) {
-                final url = urls[index];
-
-                return EpisodeDetailsItem(
-                  key: UniqueKey(),
-                  url: url,
+          Builder(
+            builder: (_) {
+              if (urls.isEmpty) {
+                return const Text(
+                  'Este personagem não participou de nenhum episódio',
                 );
-              },
-              separatorBuilder: (_, index) {
-                return const Divider();
-              },
-              itemCount: urls.length,
-            );
-          })
+              }
+              return ListView.separated(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (_, index) {
+                  final url = urls[index];
+
+                  return EpisodeDetailsItem(
+                    key: UniqueKey(),
+                    url: url,
+                  );
+                },
+                separatorBuilder: (_, index) {
+                  return const Divider();
+                },
+                itemCount: urls.length,
+              );
+            },
+          )
         ],
       ),
     );

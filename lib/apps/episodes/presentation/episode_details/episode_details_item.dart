@@ -33,6 +33,12 @@ class _EpisodeDetailsItemState extends State<EpisodeDetailsItem> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 70,
@@ -41,6 +47,7 @@ class _EpisodeDetailsItemState extends State<EpisodeDetailsItem> {
           switch (_controller.state) {
             case States.error:
               return const InfoCard.failure(message: 'Algo deu errado');
+              
             case States.loaded:
               return _controller.episode.fold(
                 (failure) => InfoCard.failure(message: failure.message),

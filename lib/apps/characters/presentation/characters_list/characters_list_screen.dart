@@ -33,6 +33,23 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    showFilterForms() {
+      customModalBottomSheet(
+        context: context,
+        child: FiltersForm(
+          initialFilters: controller.filters,
+          onConfirm: (value) {
+            controller.searchWithFilters(value);
+            Navigator.pop(context);
+          },
+        ),
+      );
+    }
+
+    navigateToFavorites() {
+      Navigator.pushNamed(context, Routes.favorites);
+    }
+
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
@@ -41,32 +58,14 @@ class _CharactersListScreenState extends State<CharactersListScreen> {
               floating: true,
               leading: IconButton(
                 icon: const Icon(CustomIconData.search),
-                onPressed: () {
-                  customModalBottomSheet(
-                    context: context,
-                    child: FiltersForm(
-                      initialFilters: controller.filters,
-                      onConfirm: (value) {
-                        controller.searchWithFilters(value);
-                        Navigator.pop(context);
-                      },
-                    ),
-                  );
-                },
+                onPressed: () => showFilterForms(),
               ),
               actions: [
                 IconButton(
-                  onPressed: () =>
-                      Navigator.pushNamed(context, Routes.favorites),
+                  onPressed: () => navigateToFavorites(),
                   icon: const Icon(Icons.favorite),
                 )
               ],
-              bottom: PreferredSize(
-                preferredSize: const Size.fromHeight(10),
-                child: RxBuilder(builder: (context) {
-                  return AppBarLoading(state: controller.state);
-                }),
-              ),
               title: Image.asset(
                 ImageConstants.rickAndMortyLogo,
                 height: 40,

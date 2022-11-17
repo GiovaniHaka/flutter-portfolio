@@ -30,4 +30,8 @@ class EpisodeDetailsController extends StatesController {
       setState(States.error);
     }
   }
+
+  dispose() {
+    _episode.dispose();
+  }
 }
