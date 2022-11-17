@@ -34,12 +34,14 @@ class CharacterDetailsScreen extends StatelessWidget {
               LocationDetailsCard(
                 title: 'Origem',
                 icon: CustomIconData.origin,
+                name: character.origin.name,
                 url: character.origin.url,
               ),
               const VerticalSeparator.large(),
               LocationDetailsCard(
                 title: 'Localização',
                 icon: CustomIconData.location,
+                name: character.location.name,
                 url: character.location.url,
               ),
               const VerticalSeparator.large(),
