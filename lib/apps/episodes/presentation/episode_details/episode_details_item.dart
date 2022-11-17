@@ -40,7 +40,7 @@ class _EpisodeDetailsItemState extends State<EpisodeDetailsItem> {
         builder: (_) {
           switch (_controller.state) {
             case States.error:
-              return const Text('Algo deu errado');
+              return const InfoCard.failure(message: 'Algo deu errado');
             case States.loaded:
               return _controller.episode.fold(
                 (failure) => InfoCard.failure(message: failure.message),
