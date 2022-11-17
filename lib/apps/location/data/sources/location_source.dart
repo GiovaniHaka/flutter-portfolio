@@ -26,6 +26,10 @@ class LocationSourceImp implements LocationSource {
       switch (status) {
         case ResponseStatus.success:
           return Right(data!);
+        case ResponseStatus.badRequest:
+          return Left(
+            Failure('Não conseguimos encontrar a localização solicitada'),
+          );
         case ResponseStatus.unknown:
           return Left(Failure('Não conseguimos encontrar a localização'));
         case ResponseStatus.error:
