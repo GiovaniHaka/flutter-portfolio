@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ricky_and_morty/apps/episodes/data/repositories/episode_repository.dart';
-import 'package:ricky_and_morty/apps/episodes/data/sources/source_repository.dart';
+import 'package:ricky_and_morty/apps/episodes/data/sources/episode_source.dart';
 import 'package:ricky_and_morty/apps/episodes/domain/models/episode.dart';
 import 'package:ricky_and_morty/common/exceptions/failure.dart';
 

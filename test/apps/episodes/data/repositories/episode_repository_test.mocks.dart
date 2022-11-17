@@ -7,7 +7,7 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:ricky_and_morty/apps/episodes/data/sources/source_repository.dart'
+import 'package:ricky_and_morty/apps/episodes/data/sources/episode_source.dart'
     as _i3;
 import 'package:ricky_and_morty/common/exceptions/failure.dart' as _i5;
 
