@@ -27,6 +27,10 @@ class EpisodeSourceImp implements EpisodeSource {
       switch (status) {
         case ResponseStatus.success:
           return Right(data!);
+        case ResponseStatus.badRequest:
+          return Left(
+            Failure('Não conseguimos encontrar o episódio solicitado'),
+          );
         case ResponseStatus.unknown:
           return Left(Failure('Não conseguimos encontrar o episódio'));
         case ResponseStatus.error:

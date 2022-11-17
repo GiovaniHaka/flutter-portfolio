@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:ricky_and_morty/apps/episodes/data/sources/source_repository.dart';
+import 'package:ricky_and_morty/apps/episodes/data/sources/episode_source.dart';
 import 'package:ricky_and_morty/apps/episodes/domain/models/episode.dart';
 import 'package:ricky_and_morty/common/exceptions/failure.dart';
 
