@@ -5,7 +5,6 @@ import 'package:ricky_and_morty/apps/characters/presentation/characters_list/com
 import 'package:ricky_and_morty/apps/characters/presentation/characters_list/components/filters_form.dart';
 import 'package:ricky_and_morty/common/componets/buttons/filled_button.dart';
 import 'package:ricky_and_morty/common/componets/modals/custom_modal_bottom_sheet.dart';
-import 'package:ricky_and_morty/common/componets/progress_indicators/app_bar_loading.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_icon_data.dart';
 import 'package:ricky_and_morty/common/constants/ui/custom_text_style.dart';
 import 'package:ricky_and_morty/common/constants/ui/images_constants.dart';
