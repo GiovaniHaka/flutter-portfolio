@@ -96,15 +96,15 @@ flutter test
 
 ### ```dio``` (^4.0.6)
 
-Pacote utilizado para utilização de protocolos Http, utilizado para comunicação entre o aplicativo e apis externas, como por exemplo https://rickandmortyapi.com/
+Pacote utilizado para utilização de protocolos Http, utilizado para comunicação entre o aplicativo e apis externas, como por exemplo https://rickandmortyapi.com/. Escolhido pela simplicidade em sua utilização.
 
 ### ```dartz``` (^0.10.1)
 
-Este pacote foi utilizado com intuito de facilitar a programação funcional, mais especfificamente utilizando a classe Either, mantendo assim maior confiabilidade de código e trataemtno de erros.
+Este pacote foi utilizado com intuito de facilitar a programação funcional, mais especfificamente utilizando a classe Either, mantendo assim maior confiabilidade de código e tratamento de erros.
 
 ### ```rx_notifier``` (^1.1.0)
 
-Este pacote foi utilizado para desenvovler o gerencimento de estado da aplicação. Basicamente este pacote simplifica a utilização do ValueNotifier, uma reatividade nativa do Flutter.
+Este pacote foi utilizado para desenvovler o gerencimento de estado da aplicação. Basicamente este pacote simplifica a utilização do ValueNotifier, sendo uma reatividade nativa do Flutter.
   
 ### ```cached_network_image``` (^3.2.2)
 
@@ -116,7 +116,7 @@ Pacote utilizado para converter e formatar uma data (DateTime) em um texto (Stri
   
 ### ```hive``` (^2.2.3)
 
-Banco de dados não relacional, utilizado para armazenar dados referentes aos personagens que foram favoritados.
+Banco de dados não relacional, utilizado para armazenar dados referentes aos personagens que foram favoritados. Como este aplicativo necessita armazer apenas chaves chaves, um banco não relacional é mais simples e intuitivo de se trabalhar.
 
 ### ```hive_flutter``` (^1.1.0)
 
@@ -124,7 +124,7 @@ Extensão do pacote Hive.
   
 ### ```mockito``` (^5.3.2)
 
-Framework que facilita a criação de Mocks, utilizado no desenvolvimento dos testes.
+Framework que facilita a criação de Mocks, que foi utilizado no desenvolvimento dos testes para injeção de dependências nas classes de teste.
 
 <br/>
 
